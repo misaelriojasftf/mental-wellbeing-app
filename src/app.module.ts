@@ -1,13 +1,22 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { ActivityModule } from './activity/activity.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { AuthModule } from './auth/auth.module';
 import { InterceptorModule } from './interceptor/interceptor.module';
+import { UserModule } from './user/user.module';
+import { UsersActivityModule } from './users-activity/users-activity.module';
 
 @Module({
   imports: [
     InterceptorModule,
+    ConfigModule.forRoot({ isGlobal: true }),
+    UserModule,
+    ActivityModule,
+    AuthModule,
+    UsersActivityModule,
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: (configService: ConfigService) => ({
