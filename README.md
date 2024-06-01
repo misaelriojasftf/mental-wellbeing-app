@@ -1,73 +1,157 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Mental Wellbeing App
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+This project is a NestJS-based API for managing users and their activities. It includes authentication JWT.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## File Structure
 
-## Description
-
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-
-## Installation
-
-```bash
-$ npm install
+```css
+src/
+├── auth/
+│ ├── auth.controller.spec.ts
+│ ├── auth.controller.ts
+│ ├── auth.module.ts
+│ ├── auth.service.spec.ts
+│ ├── auth.service.ts
+│ ├── jwt-auth.guard.ts
+│ └── jwt.strategy.ts
+├── activity/
+│ ├── dto/
+│ │ └── activity.dto.ts
+│ ├── activity.controller.spec.ts
+│ ├── activity.controller.ts
+│ ├── activity.enum.ts
+│ ├── activity.entity.ts
+│ ├── activity.module.ts
+│ ├── activity.service.spec.ts
+│ ├── activity.service.ts
+├── database/
+│ ├── migrations/
+│ │ └── 1716166990354-base.ts
+│ └── seeders/
+│ │ └── activity.seeder.ts
+├── interceptor/
+│ ├── exceptions.ts
+│ ├── exception.interceptor.ts
+│ ├── interceptor.module.ts
+│ └── transform.interceptor.ts
+├── user/
+│ ├── dto/
+│ │ └── user.dto.ts
+│ ├── user.controller.spec.ts
+│ ├── user.controller.ts
+│ ├── user.decorator.ts
+│ ├── user.entity.ts
+│ ├── user.module.ts
+│ ├── user.service.spec.ts
+│ └── user.service.ts
+├── users-activity/
+│ ├── dto/
+│ │ └── users-activity.dto.ts
+│ ├── users-activity.controller.spec.ts
+│ ├── users-activity.controller.ts
+│ ├── users-activity.entity.ts
+│ ├── users-activity.module.ts
+│ ├── users-activity.service.spec.ts
+│ └── users-activity.service.ts
+├── app.controller.spec.ts
+├── app.controller.ts
+├── app.module.ts
+├── app.service.ts
+└── main.ts
 ```
 
-## Running the app
+### Explanation of the Layers
 
-```bash
-# development
-$ npm run start
+- **Feature Module Layer**:
+   - Contains module, controller, service and it's own dtos
 
-# watch mode
-$ npm run start:dev
+- **Database Module Layer**:
+   - contains migrations and seeders 
 
-# production mode
-$ npm run start:prod
+- **Interceptor Module Layer**:
+   - contains exception and response interceptors and it's types  
+
+- **Auth Module Layer**:
+   - contains JWT setup and it's own controllers and services
+
+## Getting Started
+
+### Prerequisites
+
+- [nvm](https://github.com/nvm-sh/nvm)
+- [docker](https://docs.docker.com/engine/install/)
+
+## Running the App
+
+1. Clone Repo
+
+```fish
+git clone https://github.com/misaelriojasftf/mental-wellbeing-app.git
+cd mental-wellbeing-app
 ```
 
-## Test
+2. Install Dependencies
+
+(!) only if you don't have installed 3.22.0 yet
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+nvm install 22.2.0
 ```
 
-## Support
+and
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+```fish
 
-## Stay in touch
+nvm use
+npm i 
+```
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+3. Configure environment
 
-## License
+Create a .env file in the root directory taking the [env.example](/.env.example) and overwrite with your env settings
 
-Nest is [MIT licensed](LICENSE).
+```bash
+DATABASE_HOST=localhost
+DATABASE_PORT=5432
+.
+.
+.
+
+```
+
+Create a orm config file in the root directory taking the [orm.config.example](/orm.config.example.ts) and overwrite with your env settings
+
+```bash
+export const connectionSource = new DataSource({
+    migrationsTableName: 'migrations',
+.
+.
+.
+
+```
+
+4. Run Seeders
+
+```bash
+npm run seed:activities
+```
+
+4. Run Project
+
+In Dev Mode
+```bash
+docker-compose up -d
+npm run start:dev
+```
+
+In Debug Mode
+```bash
+docker-compose up -d
+npm run start:debug
+```
+
+## How to Test
+
+download the [postman collection](/docs/mental-wellbeing-app.postman_collection.json) and import it
+
+![gif](./docs/show_run_postman.gif)
